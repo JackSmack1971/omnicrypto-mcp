@@ -1,0 +1,38 @@
+[project]
+name = "omnicrypto-mcp"
+version = "0.2.0"
+description = "Federated, single-flight, fail-closed crypto data gateway for AI agent swarms"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=2.0.0",
+    "httpx[http2]>=0.27.2",
+    "ccxt>=4.4.0",
+    "pydantic>=2.9.0",
+    "pandas>=2.2.3",
+    "numpy>=2.0.0",
+    "aiosqlite>=0.20.0",
+    "python-dotenv>=1.0.1",
+    "starlette>=0.40.0",
+]
+
+[project.scripts]
+omnicrypto = "omnicrypto.server:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "respx>=0.21.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/omnicrypto"]
